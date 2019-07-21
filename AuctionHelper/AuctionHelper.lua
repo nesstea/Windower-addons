@@ -364,7 +364,7 @@ function ah_proposal(bid, item_name, vol, price)
     elseif bid == 'sell' and price and tonumber(price) <= 999999999 then
         if not auction_box then print('AH Error: Click auction counter or use /ah to initialize sales.') return	end
         if not find_empty_slot() then print('AHPack Error: No Empty Slots Available.') return end
-        trans = trans.. string.char(0x04,0,0,0, (price%256), (math.floor((price/256)%256)), (math.floor((price/65536)%256)), (math.floor((price/16777216)%256)))
+        trans = trans.. string.char(0x0B,0,0,0, (price%256), (math.floor((price/256)%256)), (math.floor((price/65536)%256)), (math.floor((price/16777216)%256)))
         local index = find_item(item.id, single == 1 and single or item.stack, item.max_charges)
         if not index then print('AH Error: %s of %s not found in inventory.':format(single == 1 and 'Single' or 'Stack',item.en)) return end
         trans = trans..string.char((index%256), (math.floor((index/256)%256)), (item.id%256), (math.floor((item.id/256)%256)))
